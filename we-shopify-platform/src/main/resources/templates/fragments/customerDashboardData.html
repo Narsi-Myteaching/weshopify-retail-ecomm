@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="dashboard-wrapper" th:fragment="customerDashboardData">
+	<div class="container-fluid dashboard-content ">
+		<!-- ============================================================== -->
+		<!-- pageheader  -->
+		<!-- ============================================================== -->
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<div class="page-header">
+					<h2 class="pageheader-title">Customer Details</h2>
+					<div class="page-breadcrumb">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"
+									class="breadcrumb-link">Dashboard</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Customers
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">View Customers
+									</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ============================================================== -->
+		<!-- end pageheader  -->
+		<!-- ============================================================== -->
+		<div class="dashboard-ecommerce">
+			<!-- <div class="container-fluid dashboard-content "> -->
+				<div class="row">
+					<!-- ============================================================== -->
+
+					<!-- ============================================================== -->
+
+					<!-- recent orders  -->
+					<!-- ============================================================== -->
+					<div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
+						<div class="card">
+							<!-- <h5 class="card-header">Recent Orders</h5> -->
+							<div class="card-body p-0">
+								<div class="table-responsive">
+									<table class="table">
+										<thead class="bg-light">
+											<tr class="border-0">
+												<th class="border-0">First Name</th>
+												<th class="border-0">Last Name</th>
+												<th class="border-0">User Name</th>
+												<th class="border-0">Email</th>
+												<th class="border-0">Mobile Number</th>
+												<th class="border-0">Status</th>
+												<th class="border-0">Action</th>
+												
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>James</td>
+												<td>Web</td>
+												<td>James Web</td>
+												<td>jamesWeb@yopmail.com</td>
+												<td>9876543210</td>
+												<td>Active</td>
+												<td>
+												 <div>
+														<a href="#">
+															<span class="glyphicon glyphicon-edit"></span>
+														</a> | <a
+															href="#">
+															<span class="glyphicon glyphicon-remove"></span>
+														</a>
+													</div>
+												</td>
+												
+											</tr>	
+											<tr>
+												<td>Kepler</td>
+												<td>Scope</td>
+												<td>Kepler Scope</td>
+												<td>keplerScope@yopmail.com</td>
+												<td>9876543210</td>
+												<td>Active</td>
+												<td>
+												 <div>
+														<a href="#">
+															<span class="glyphicon glyphicon-edit"></span>
+														</a> | <a
+															href="#">
+															<span class="glyphicon glyphicon-remove"></span>
+														</a>
+													</div>
+												</td>
+												
+											</tr>												
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -9,5 +9,5 @@ public class WeShopifyPlatformApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WeShopifyPlatformApplication.class, args);
 	}
-
+	
 }
