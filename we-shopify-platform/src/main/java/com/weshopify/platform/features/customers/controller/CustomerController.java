@@ -1,10 +1,16 @@
-package com.weshopify.platform.features.customers;
+package com.weshopify.platform.features.customers.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.weshopify.platform.features.customers.bean.CustomerBean;
+import com.weshopify.platform.features.customers.service.CustomerService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,9 +18,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomerController {
 
+	@Autowired
+	private CustomerService customerService;
+	
 	@RequestMapping("/view-customerBoard")
-	public String viewCustomerDashBoard() {
+	public String viewCustomerDashBoard(Model model) {
 		log.info("i am inn viewCustomerDashBoard page");
+		List<CustomerBean> customerList = customerService.getAllCustomers();
+		model.addAttribute("customerData", customerList);
 		return "customer-dashboard";
 	}
 	
@@ -26,15 +37,26 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value = "/save-customer",method = RequestMethod.POST)
-	public String addCustomer(@ModelAttribute("customerFormBean") CustomerBean customerBean) {
+	public String addCustomer(@ModelAttribute("customerFormBean") CustomerBean customerBean, Model model) {
 		log.info("i am inn addCustomerViewPage page");
 		log.info(customerBean.toString());
 		
 		if(customerBean.getIsSelfReg() != null && Boolean.valueOf(customerBean.getIsSelfReg())) {
-			//Todo customer Self Registration
+			customerService.saveCustomer(customerBean);
+			if(customerBean != null && customerBean.getId() >0) {
+				
+				String isReg="true";
+				model.addAttribute("regMessage", isReg);
+				
+				return "customer-sefReg";
+				
+			}
 		}else {
-			//Todo: Register the customer by the admin
+			customerService.saveCustomer(customerBean);
+			
 		}
-		return "add-customer";
+		return "customer-dashboard";
 	}
+	
+	
 }
