@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -55,7 +56,24 @@ public class CustomerController {
 			customerService.saveCustomer(customerBean);
 			
 		}
-		return "customer-dashboard";
+		return "redirect:/view-customerBoard";
+	}
+	
+	@RequestMapping(value = "/delete-customer/{customerId}",method = RequestMethod.GET)
+	public String deleteCustomer(@PathVariable("customerId") String customerId, Model model) {
+		log.info("i am inn deleteCustomerPage:\t"+customerId);
+		
+		customerService.deleteCustomerById(Integer.valueOf(customerId));
+		return "redirect:/view-customerBoard";
+	}
+	
+	@RequestMapping(value = "/edit-customer/{customerId}",method = RequestMethod.GET)
+	public String editCustomer(@PathVariable("customerId") String customerId, Model model) {
+		log.info("i am inn deleteCustomerPage:\t"+customerId);
+		
+		CustomerBean customerBean = customerService.getCustomerById(Integer.valueOf(customerId));
+		model.addAttribute("customerFormBean", customerBean);
+		return "edit-customer";
 	}
 	
 	

@@ -54,32 +54,34 @@
 												<th class="border-0">User Name</th>
 												<th class="border-0">Email</th>
 												<th class="border-0">Mobile Number</th>
+												<th class="border-0">type</th>
 												<th class="border-0">Status</th>
 												<th class="border-0">Action</th>
 												
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>James</td>
-												<td>Web</td>
-												<td>James Web</td>
-												<td>jamesWeb@yopmail.com</td>
-												<td>9876543210</td>
-												<td>Active</td>
+											<tr th:each="customerDataBean: ${customerData}">
+												<td><p th:text="${{customerDataBean.firstName}}"></p></td>
+												<td><p th:text="${{customerDataBean.lastName}}"></p></td>
+												<td><p th:text="${{customerDataBean.userName}}"></p></td>
+												<td><p th:text="${{customerDataBean.email}}"></p></td>
+												<td><p th:text="${{customerDataBean.mobileNumber}}"></p></td>
+												<td><p th:text="${{customerDataBean.isSelfReg}}"></p></td>
+												<td><p th:text="${{customerDataBean.isSelfReg}}"></p></td>
 												<td>
 												 <div>
-														<a href="#">
+														<a th:href="@{'/edit-customer/'+${customerDataBean.id}}">
 															<span class="glyphicon glyphicon-edit"></span>
 														</a> | <a
-															href="#">
+															th:href="@{'/delete-customer/'+${customerDataBean.id}}">
 															<span class="glyphicon glyphicon-remove"></span>
 														</a>
 													</div>
 												</td>
 												
 											</tr>	
-											<tr>
+											<!-- <tr>
 												<td>Kepler</td>
 												<td>Scope</td>
 												<td>Kepler Scope</td>
@@ -97,7 +99,7 @@
 													</div>
 												</td>
 												
-											</tr>												
+											</tr> -->												
 											
 										</tbody>
 									</table>
