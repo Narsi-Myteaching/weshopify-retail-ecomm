@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.weshopify.platform.features.customers.bean.CustomerBean;
@@ -70,6 +72,21 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerBean custBean = new CustomerBean();
 		BeanUtils.copyProperties(customerDomain, custBean);
 		return custBean;
+	}
+
+	@Override
+	public List<CustomerBean> getAllCustomers(int noOfRecPerPage) {
+		int curret_page = 0;
+		PageRequest pageReq = PageRequest.of(curret_page, noOfRecPerPage);
+		Iterator<Customer> customerIt = customerRepo.findAll(pageReq).iterator();
+		List<CustomerBean> custBeanList = new ArrayList<>();
+		while(customerIt.hasNext()) {
+			Customer customer = customerIt.next();
+			CustomerBean custBean = new CustomerBean();
+			BeanUtils.copyProperties(customer, custBean);
+			custBeanList.add(custBean);
+		}
+		return custBeanList;
 	}
 
 }

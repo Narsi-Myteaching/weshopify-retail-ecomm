@@ -30,6 +30,22 @@ public class CustomerController {
 		return "customer-dashboard";
 	}
 	
+	@RequestMapping("/view-customerBoard/{noOfRecPerPage}")
+	public String viewCustomerDashBoardWithPagination(@PathVariable("noOfRecPerPage") String noOfRecPerPage,Model model) {
+		log.info("i am inn viewCustomerDashBoard page");
+		log.info("curent page is:\t"+0);
+		log.info("no.Of Rec Per Page is:\t"+noOfRecPerPage);
+		List<CustomerBean> customerList = customerService.getAllCustomers(Integer.valueOf(noOfRecPerPage));
+		model.addAttribute("currentPage", 0);
+		model.addAttribute("noOfRecPerPage", noOfRecPerPage);
+		
+		int totalRecords = customerList.size();
+		int noOfPages = totalRecords/Integer.valueOf(noOfRecPerPage);
+		model.addAttribute("totalNoOfRecords", noOfPages);
+		model.addAttribute("customerData", customerList);
+		return "customer-dashboard";
+	}
+	
 	@RequestMapping("/add-customer-view")
 	public String addCustomerViewPage(Model model) {
 		log.info("i am inn addCustomerViewPage page");
